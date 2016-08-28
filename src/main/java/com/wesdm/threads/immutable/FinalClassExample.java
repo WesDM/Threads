@@ -25,8 +25,8 @@ public class FinalClassExample {
 	 */
 	@SuppressWarnings("unchecked")
 	public HashMap<String, String> getTestMap() {
-		//return testMap;
-		return (HashMap<String, String>) testMap.clone();
+		return testMap;
+		//return (HashMap<String, String>) testMap.clone();
 	}
 	
 	/**
@@ -47,19 +47,19 @@ public class FinalClassExample {
 	 * @param hm
 	 */
 	
-	private FinalClassExample(int i, String n, HashMap<String,String> hm){
-		System.out.println("Performing Deep Copy for Object initialization");
-		this.id=i;
-		this.name=n;
-		HashMap<String,String> tempMap=new HashMap<String,String>();
-		String key;
-		Iterator<String> it = hm.keySet().iterator();
-		while(it.hasNext()){
-			key=it.next();
-			tempMap.put(key, hm.get(key));
-		}
-		this.testMap=tempMap;
-	}
+//	private FinalClassExample(int i, String n, HashMap<String,String> hm){
+//		System.out.println("Performing Deep Copy for Object initialization");
+//		this.id=i;
+//		this.name=n;
+//		HashMap<String,String> tempMap=new HashMap<String,String>();
+//		String key;
+//		Iterator<String> it = hm.keySet().iterator();
+//		while(it.hasNext()){
+//			key=it.next();
+//			tempMap.put(key, hm.get(key));
+//		}
+//		this.testMap=tempMap;
+//	}
 	
 	
 	/**
@@ -68,14 +68,14 @@ public class FinalClassExample {
 	 * @param n
 	 * @param hm
 	 */
-	/**
+	
 	public FinalClassExample(int i, String n, HashMap<String,String> hm){
 		System.out.println("Performing Shallow Copy for Object initialization");
 		this.id=i;
 		this.name=n;
 		this.testMap=hm;
 	}
-	*/
+	
 	
 	/**
 	 * To test the consequences of Shallow Copy and how to avoid it with Deep Copy for creating immutable classes
@@ -107,11 +107,13 @@ public class FinalClassExample {
 		System.out.println("ce id after local variable change:"+ce.getId());
 		System.out.println("ce name after local variable change:"+ce.getName());
 		System.out.println("ce testMap after local variable change:"+ce.getTestMap());
+		System.out.println("h1 before changing variable from accessor methods:"+h1);
 		
 		HashMap<String, String> hmTest = ce.getTestMap();
 		hmTest.put("4", "new");
 		
 		System.out.println("ce testMap after changing variable from accessor methods:"+ce.getTestMap());
+		System.out.println("h1 after changing variable from accessor methods:"+h1);
 
 	}
 
